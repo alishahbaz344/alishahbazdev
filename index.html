@@ -1,871 +1,462 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ali Shahbaz — WordPress Full-Stack Developer</title>
+<meta name="description" content="WordPress full-stack developer in Lahore building fast, SEO-ready sites: custom themes, Elementor and WooCommerce, optimized for Core Web Vitals.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --ink:#0B1F2E;
-    --ink-2:#0F293C;
-    --blueprint:#2FA8C4;
-    --blueprint-dim: rgba(47,168,196,0.35);
-    --amber:#F2A73B;
-    --paper:#EAF1F5;
-    --slate:#7E97A7;
-    --good:#39C08C;
-    --warn:#F2A73B;
-    --bad:#E5654A;
-    --display: 'Space Grotesk', sans-serif;
-    --body: 'Inter', sans-serif;
-    --mono: 'JetBrains Mono', monospace;
-  }
+:root{
+  --bg:#12151a; --bg2:#181c22; --card:#1d2128; --card2:#232830;
+  --line:rgba(255,255,255,.09); --line2:rgba(255,255,255,.16);
+  --text:#e8eaed; --muted:#9aa0a8; --dim:#6f757d;
+  --silver:linear-gradient(180deg,#ffffff 0%,#d9dbde 40%,#8e9298 100%);
+  --metal:linear-gradient(120deg,#e9eaec 0%,#9a9da2 30%,#3a3e45 60%,#23272d 100%);
+  --radius:16px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);
+  line-height:1.5;-webkit-font-smoothing:antialiased;
+  background-image:radial-gradient(ellipse at 70% 0%,#2a2f37 0%,transparent 55%),radial-gradient(ellipse at 0% 40%,#1a1e24 0%,transparent 50%);
+  background-attachment:fixed;
+}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+.label{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);font-weight:500}
+.ico{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round;flex:none}
 
-  *{margin:0;padding:0;box-sizing:border-box;}
+/* header */
+header{position:absolute;top:0;left:0;right:0;z-index:20}
+.nav{display:flex;align-items:center;justify-content:space-between;height:84px}
+.logo{font-family:'Anton',sans-serif;font-size:28px;letter-spacing:.04em;background:var(--silver);-webkit-background-clip:text;background-clip:text;color:transparent}
+.logo span{font-family:'Inter';font-weight:300;font-size:22px;margin-left:2px}
+.nav ul{display:flex;gap:40px;list-style:none;align-items:center}
+.nav ul a{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--text);opacity:.85;transition:.2s}
+.nav ul a:hover{opacity:1;color:#fff}
+.pill{display:inline-flex;align-items:center;gap:10px;padding:13px 26px;border-radius:999px;border:1px solid var(--line2);
+  background:linear-gradient(135deg,#d7d9dc 0%,#8d9196 55%,#3d4147 100%);color:#16181c;font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:600;transition:.25s}
+.pill:hover{filter:brightness(1.12);transform:translateY(-1px)}
+.menu-btn{display:none;background:none;border:1px solid var(--line2);color:var(--text);width:42px;height:42px;border-radius:10px;cursor:pointer}
 
-  html{scroll-behavior:smooth;}
+/* hero */
+.hero{position:relative;padding:150px 0 70px;min-height:700px;overflow:hidden}
+.hero .eyebrow{margin-bottom:14px}
+.hero h1{font-family:'Anton',Impact,'Arial Narrow',sans-serif;font-weight:400;font-size:clamp(84px,14.5vw,190px);line-height:.92;text-transform:uppercase;
+  background:var(--silver);-webkit-background-clip:text;background-clip:text;color:transparent;position:relative;z-index:3;letter-spacing:.005em}
+.hero p.lead{max-width:420px;color:#cfd2d6;font-size:15px;margin-top:34px;position:relative;z-index:3}
+.hero .btns{display:flex;gap:30px;align-items:center;margin-top:30px;position:relative;z-index:3;flex-wrap:wrap}
+.btn-metal{display:inline-flex;align-items:center;gap:12px;padding:15px 28px;border-radius:6px;border:1px solid var(--line2);
+  background:linear-gradient(135deg,#d5d7da,#7f8388 70%,#464a51);color:#15171b;font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:600;transition:.25s}
+.btn-metal:hover{filter:brightness(1.1)}
+.link-sm{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);display:inline-flex;gap:10px;align-items:center;transition:.2s}
+.link-sm:hover{color:#fff}
+.portrait{position:absolute;right:4%;top:40px;width:min(46vw,560px);aspect-ratio:4/5;z-index:2}
+.portrait svg,.portrait img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top}
+/* silver-toned portrait so the orange studio backdrop matches the dark theme */
+.portrait .photo{object-position:50% 8%;filter:grayscale(1) contrast(1.08) brightness(.82);
+  -webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 14%,#000 62%,transparent 98%),linear-gradient(to right,transparent 0,#000 22%,#000 88%,transparent 100%);
+  mask-image:linear-gradient(to bottom,transparent 0,#000 14%,#000 62%,transparent 98%),linear-gradient(to right,transparent 0,#000 22%,#000 88%,transparent 100%);
+  -webkit-mask-composite:source-in;mask-composite:intersect}
+.arc{position:absolute;right:-6%;top:70px;width:520px;height:520px;border-radius:50%;border:1px solid var(--line2);border-left-color:transparent;border-bottom-color:transparent;transform:rotate(18deg);z-index:1;opacity:.7}
+.spark{position:absolute;right:6%;top:290px;z-index:3;color:#d8dadd}
+.avail{position:absolute;right:28px;bottom:72px;text-align:right;z-index:4}
+.avail .big{font-family:'Anton',sans-serif;font-size:30px;text-transform:uppercase;letter-spacing:.02em;background:var(--silver);-webkit-background-clip:text;background-clip:text;color:transparent;display:block;margin:2px 0}
+.hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:120px;background:linear-gradient(to bottom,transparent,var(--bg));z-index:2;pointer-events:none}
 
-  body{
-    background:var(--ink);
-    color:var(--paper);
-    font-family:var(--body);
-    line-height:1.6;
-    overflow-x:hidden;
-  }
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);border-radius:var(--radius);
+  background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.02));padding:30px 10px;position:relative;z-index:5;margin-top:-10px}
+.stat{text-align:center;padding:6px 10px;border-right:1px solid var(--line)}
+.stat:last-child{border:0}
+.stat .ico{color:#cfd2d6;margin-bottom:12px;width:24px;height:24px}
+.stat .num{font-size:clamp(34px,4.4vw,52px);font-weight:300;line-height:1;background:var(--silver);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat .label{margin-top:12px;font-size:10px}
 
-  a{color:inherit;text-decoration:none;}
+section{padding-top:48px}
+.sec-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
 
-  ::selection{background:var(--amber);color:var(--ink);}
+/* featured */
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.fcard{position:relative;border:1px solid var(--line);border-radius:var(--radius);background:linear-gradient(180deg,var(--card2),var(--card));
+  min-height:300px;overflow:hidden;padding:22px;display:flex;flex-direction:column;justify-content:flex-end;transition:.3s}
+.fcard:hover{transform:translateY(-4px);border-color:var(--line2)}
+.fcard h3{font-size:25px;font-weight:400;line-height:1.1;margin-bottom:12px;position:relative;z-index:2;max-width:60%}
+.fcard .tags{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);line-height:1.8;position:relative;z-index:2}
+.go{position:absolute;right:18px;bottom:18px;width:42px;height:42px;border-radius:50%;border:1px solid var(--line2);background:rgba(20,22,26,.7);
+  display:grid;place-items:center;z-index:3;backdrop-filter:blur(6px);transition:.25s}
+.fcard:hover .go{background:#e6e7e9;color:#111}
+/* mockup 1: dashboard */
+.m-dash{position:absolute;left:18px;right:18px;top:18px;height:150px;border:1px solid var(--line);border-radius:10px;background:#15181d;padding:12px;display:grid;grid-template-columns:44px 1fr;gap:10px}
+.m-dash .side{display:flex;flex-direction:column;gap:7px}
+.m-dash .side i{height:7px;border-radius:3px;background:#2b3037}
+.m-dash .side i:first-child{background:#6b7078}
+.m-dash .main{display:flex;flex-direction:column;gap:8px}
+.m-dash .big{font-size:15px;font-weight:600}
+.m-dash .bars{flex:1;display:flex;align-items:flex-end;gap:6px}
+.m-dash .bars b{flex:1;border-radius:3px 3px 0 0;background:linear-gradient(#cfd2d6,#555a62)}
+/* mockup 2: metal shape */
+.m-shape{position:absolute;right:-30px;top:30px;width:230px;height:230px}
+.m-shape .r1,.m-shape .r2{position:absolute;border-radius:50%}
+.m-shape .r1{inset:0;background:radial-gradient(circle at 30% 25%,#fff 0%,#b9bcc0 25%,#4a4e55 60%,#15171a 100%);box-shadow:0 20px 40px rgba(0,0,0,.5)}
+.m-shape .r2{inset:48px;background:radial-gradient(circle at 70% 70%,#20242a 0%,#101216 70%);box-shadow:inset 0 6px 18px rgba(255,255,255,.12)}
+/* mockup 3: phone */
+.m-phone{position:absolute;right:26px;top:22px;width:130px;height:260px;border-radius:26px;border:3px solid #9a9ea4;background:#101318;padding:14px 10px;box-shadow:0 20px 40px rgba(0,0,0,.45);transform:rotate(6deg)}
+.m-phone .ph-t{font-size:8px;color:#aab;margin-bottom:8px}
+.m-phone .ring{width:54px;height:54px;border-radius:50%;margin:6px auto;border:5px solid #2a2f36;border-top-color:#e4e6e8;border-right-color:#e4e6e8;display:grid;place-items:center;font-size:11px;font-weight:600}
+.m-phone .row{height:20px;border-radius:6px;background:#1d2128;margin-top:7px}
+.fcard.p3 h3{max-width:55%}
 
-  /* Blueprint grid background */
-  .grid-bg{
-    position:fixed;
-    inset:0;
-    z-index:0;
-    background-image:
-      linear-gradient(var(--blueprint-dim) 1px, transparent 1px),
-      linear-gradient(90deg, var(--blueprint-dim) 1px, transparent 1px);
-    background-size: 48px 48px;
-    opacity:0.08;
-    pointer-events:none;
-  }
+/* capabilities + tools */
+.two{display:grid;grid-template-columns:1.15fr 1fr;gap:0}
+.cap{padding-right:40px;border-right:1px solid var(--line)}
+.cap-grid{display:grid;grid-template-columns:1fr 1fr;gap:34px 28px;margin-top:26px}
+.cap-item{display:flex;gap:16px}
+.cap-item .ico{width:30px;height:30px;color:#cfd2d6;margin-top:2px}
+.cap-item h4{font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:500;margin-bottom:6px}
+.cap-item p{font-size:12.5px;color:var(--muted);line-height:1.55}
+.tools{padding-left:40px}
+.box{border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.03);padding:16px;margin-top:18px}
+.tg{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);font-weight:500;margin-bottom:12px}
+.tool-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px 10px}
+.tool{display:flex;align-items:center;gap:10px;font-size:11.5px;color:#d3d5d9;line-height:1.2}
+.tool b{width:36px;height:36px;border-radius:8px;border:1px solid var(--line2);background:var(--card2);display:grid;place-items:center;font-size:11px;font-weight:600;flex:none;color:#e6e8ea}
+.certs h5{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);font-weight:500;margin-bottom:10px}
+.cert{display:flex;gap:12px;align-items:center;padding:10px 0;border-top:1px solid var(--line)}
+.cert b{width:30px;height:30px;border-radius:7px;background:var(--card2);border:1px solid var(--line2);display:grid;place-items:center;flex:none}
+.cert b .ico{width:16px;height:16px}
+.cert span{display:block;font-size:12px;line-height:1.3}
+.cert small{font-size:10.5px;color:var(--dim)}
 
-  .container{
-    max-width:1120px;
-    margin:0 auto;
-    padding:0 32px;
-    position:relative;
-    z-index:1;
-  }
+/* experience */
+.exp{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px}
+.xcard{border:1px solid var(--line);border-radius:var(--radius);background:rgba(255,255,255,.03);padding:24px}
+.xcard .date{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.xcard h3{font-size:19px;font-weight:500;margin:8px 0 2px}
+.xcard .co{font-size:13px;color:var(--muted);margin-bottom:14px}
+.xcard li{font-size:13px;color:#c4c8cd;margin-left:16px;margin-bottom:6px}
+.xcard li::marker{color:#7d838b}
 
-  /* NAV */
-  header{
-    position:sticky;
-    top:0;
-    z-index:50;
-    background:rgba(11,31,46,0.85);
-    backdrop-filter:blur(10px);
-    border-bottom:1px solid rgba(47,168,196,0.25);
-  }
-  nav{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:18px 32px;
-    max-width:1120px;
-    margin:0 auto;
-  }
-  .logo{
-    font-family:var(--mono);
-    font-size:15px;
-    font-weight:600;
-    letter-spacing:0.5px;
-    color:var(--paper);
-    border:1px solid var(--blueprint-dim);
-    padding:6px 10px;
-    border-radius:4px;
-  }
-  .logo span{color:var(--blueprint);}
-  .nav-links{
-    display:flex;
-    gap:36px;
-    font-family:var(--mono);
-    font-size:13px;
-    letter-spacing:0.5px;
-  }
-  .nav-links a{
-    color:var(--slate);
-    transition:color 0.2s;
-    position:relative;
-  }
-  .nav-links a:hover, .nav-links a:focus-visible{color:var(--paper);}
-  .status-pill{
-    display:flex;
-    align-items:center;
-    gap:8px;
-    font-family:var(--mono);
-    font-size:12px;
-    color:var(--good);
-    border:1px solid rgba(57,192,140,0.4);
-    padding:6px 12px;
-    border-radius:100px;
-  }
-  .status-dot{
-    width:7px;height:7px;border-radius:50%;
-    background:var(--good);
-    box-shadow:0 0 0 3px rgba(57,192,140,0.2);
-    animation:pulse 2s infinite;
-  }
-  @keyframes pulse{
-    0%,100%{opacity:1;}
-    50%{opacity:0.4;}
-  }
-  .nav-mobile-hide{display:flex;}
-  @media(max-width:760px){
-    .nav-mobile-hide{display:none;}
-  }
+/* process */
+.process{display:grid;grid-template-columns:repeat(5,1fr);border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.03);margin-top:16px}
+.step{padding:20px 22px;position:relative;display:flex;flex-direction:column;gap:6px;min-height:150px}
+.step .n{font-size:11px;color:var(--dim);letter-spacing:.1em}
+.step h6{font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:500;display:inline;margin-left:10px;color:#e1e3e6}
+.step p{font-size:11.5px;color:var(--muted);line-height:1.5}
+.step .ico{margin-top:auto;color:#cfd2d6;width:26px;height:26px}
+.step:not(:last-child)::after{content:"";position:absolute;right:-18px;top:34px;width:36px;border-top:1px dashed var(--line2)}
 
-  /* HERO */
-  .hero{
-    padding:110px 0 90px;
-    position:relative;
-  }
-  .eyebrow{
-    font-family:var(--mono);
-    font-size:13px;
-    color:var(--blueprint);
-    letter-spacing:2px;
-    text-transform:uppercase;
-    display:flex;
-    align-items:center;
-    gap:10px;
-    margin-bottom:24px;
-  }
-  .eyebrow::before{
-    content:'';
-    width:28px;height:1px;
-    background:var(--blueprint);
-  }
-  h1{
-    font-family:var(--display);
-    font-weight:700;
-    font-size:clamp(40px, 6vw, 74px);
-    line-height:1.05;
-    letter-spacing:-1.5px;
-    max-width:820px;
-    margin-bottom:20px;
-  }
-  h1 .accent{color:var(--amber);}
-  .hero-sub{
-    font-size:18px;
-    color:var(--slate);
-    max-width:560px;
-    margin-bottom:40px;
-  }
-  .hero-cta{
-    display:flex;
-    gap:16px;
-    flex-wrap:wrap;
-    margin-bottom:70px;
-  }
-  .btn{
-    font-family:var(--mono);
-    font-size:14px;
-    padding:14px 26px;
-    border-radius:6px;
-    display:inline-flex;
-    align-items:center;
-    gap:8px;
-    transition:transform 0.15s ease, box-shadow 0.15s ease;
-  }
-  .btn:focus-visible{outline:2px solid var(--blueprint);outline-offset:3px;}
-  .btn-primary{
-    background:var(--amber);
-    color:var(--ink);
-    font-weight:600;
-  }
-  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(242,167,59,0.25);}
-  .btn-ghost{
-    border:1px solid var(--blueprint-dim);
-    color:var(--paper);
-  }
-  .btn-ghost:hover{border-color:var(--blueprint);transform:translateY(-2px);}
+/* cta */
+.cta{margin-top:44px;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:grid;grid-template-columns:1.15fr 1fr 1fr;align-items:center;
+  background:linear-gradient(110deg,#d4d6d9 0%,#8b8f95 12%,#3a3e45 28%,#1f2329 45%,#1b1f25 100%)}
+.cta h2{font-family:'Anton',sans-serif;font-weight:400;font-size:clamp(30px,3.6vw,44px);line-height:1.02;text-transform:uppercase;color:#f4f5f6;padding:36px 30px;text-shadow:0 2px 14px rgba(0,0,0,.4)}
+.cta .mid{padding:30px 24px}
+.cta .mid p{font-size:13px;color:#cfd2d6;margin-bottom:18px}
+.cta .contact{padding:30px 30px;border-left:1px solid var(--line);display:flex;flex-direction:column;gap:14px;font-size:12.5px;color:#cfd2d6}
+.cta .contact a,.cta .contact div{display:flex;gap:12px;align-items:center}
+.cta .contact .ico{width:16px;height:16px;color:var(--muted)}
+.cta .contact a:hover{color:#fff}
 
-  /* CWV DASHBOARD - signature element */
-  .dashboard{
-    background:linear-gradient(180deg, rgba(47,168,196,0.06), rgba(47,168,196,0.02));
-    border:1px solid var(--blueprint-dim);
-    border-radius:12px;
-    padding:32px;
-  }
-  .dashboard-head{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:28px;
-    flex-wrap:wrap;
-    gap:12px;
-  }
-  .dashboard-title{
-    font-family:var(--mono);
-    font-size:12px;
-    color:var(--slate);
-    letter-spacing:1px;
-    text-transform:uppercase;
-  }
-  .dashboard-chip{
-    font-family:var(--mono);
-    font-size:11px;
-    color:var(--blueprint);
-    border:1px solid var(--blueprint-dim);
-    padding:4px 10px;
-    border-radius:100px;
-  }
-  .gauges{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:28px;
-  }
-  @media(max-width:640px){
-    .gauges{grid-template-columns:1fr;}
-  }
-  .gauge-card{text-align:center;}
-  .gauge-label{
-    font-family:var(--mono);
-    font-size:13px;
-    color:var(--paper);
-    margin-bottom:4px;
-    font-weight:600;
-  }
-  .gauge-full{
-    font-family:var(--mono);
-    font-size:11px;
-    color:var(--slate);
-    margin-bottom:14px;
-  }
-  .gauge-svg{width:130px;height:130px;}
-  .gauge-track{fill:none;stroke:rgba(126,151,167,0.2);stroke-width:8;}
-  .gauge-fill{
-    fill:none;
-    stroke-width:8;
-    stroke-linecap:round;
-    transform:rotate(-90deg);
-    transform-origin:50% 50%;
-    stroke-dasharray:326.7;
-    stroke-dashoffset:326.7;
-    transition:stroke-dashoffset 1.4s cubic-bezier(.4,0,.2,1);
-  }
-  .gauge-value{
-    font-family:var(--mono);
-    font-weight:700;
-    font-size:20px;
-    fill:var(--paper);
-  }
-  .gauge-status{
-    font-family:var(--mono);
-    font-size:11px;
-    margin-top:8px;
-    color:var(--good);
-    letter-spacing:0.5px;
-  }
+/* projects list */
+.proj{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:16px}
+.pj{border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.03);padding:18px;display:flex;flex-direction:column;gap:6px;transition:.25s}
+.pj:hover{border-color:var(--line2);transform:translateY(-3px)}
+.pj small{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.pj h4{font-size:15px;font-weight:500}
+.pj p{font-size:12px;color:var(--muted);line-height:1.5;flex:1}
+.pj em{font-style:normal;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#cfd2d6;margin-top:6px}
 
-  section{
-    padding:100px 0;
-    position:relative;
-    border-top:1px solid rgba(47,168,196,0.12);
-  }
-  .section-head{
-    display:flex;
-    justify-content:space-between;
-    align-items:flex-end;
-    margin-bottom:52px;
-    flex-wrap:wrap;
-    gap:16px;
-  }
-  .section-tag{
-    font-family:var(--mono);
-    font-size:12px;
-    color:var(--blueprint);
-    letter-spacing:2px;
-    text-transform:uppercase;
-    margin-bottom:10px;
-  }
-  h2{
-    font-family:var(--display);
-    font-size:clamp(28px,4vw,42px);
-    font-weight:600;
-    letter-spacing:-0.5px;
-  }
-  .section-note{
-    font-family:var(--mono);
-    font-size:12px;
-    color:var(--slate);
-    max-width:280px;
-    text-align:right;
-  }
-  @media(max-width:640px){
-    .section-note{text-align:left;}
-  }
+footer{padding:26px 0 36px;display:flex;justify-content:space-between;align-items:center;font-size:11px;color:var(--dim);flex-wrap:wrap;gap:12px}
+footer .cn{letter-spacing:.2em;text-transform:uppercase;display:flex;align-items:center;gap:18px}
+footer .cn a:hover{color:#fff}
 
-  /* TOOLBOX / SKILLS */
-  .toolbox{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-    gap:1px;
-    background:rgba(47,168,196,0.15);
-    border:1px solid rgba(47,168,196,0.15);
-    border-radius:12px;
-    overflow:hidden;
-  }
-  .tool-cell{
-    background:var(--ink-2);
-    padding:26px 24px;
-  }
-  .tool-cell-label{
-    font-family:var(--mono);
-    font-size:11px;
-    color:var(--amber);
-    letter-spacing:1.5px;
-    text-transform:uppercase;
-    margin-bottom:14px;
-  }
-  .tool-tags{
-    display:flex;
-    flex-wrap:wrap;
-    gap:8px;
-  }
-  .tool-tag{
-    font-family:var(--mono);
-    font-size:12.5px;
-    color:var(--paper);
-    background:rgba(234,241,245,0.05);
-    border:1px solid rgba(234,241,245,0.1);
-    padding:5px 10px;
-    border-radius:5px;
-  }
-
-  /* EXPERIENCE TIMELINE */
-  .timeline{
-    position:relative;
-    padding-left:36px;
-  }
-  .timeline::before{
-    content:'';
-    position:absolute;
-    left:5px;top:6px;bottom:6px;
-    width:1px;
-    background:repeating-linear-gradient(to bottom, var(--blueprint) 0 6px, transparent 6px 12px);
-  }
-  .timeline-item{
-    position:relative;
-    padding-bottom:52px;
-  }
-  .timeline-item:last-child{padding-bottom:0;}
-  .timeline-dot{
-    position:absolute;
-    left:-36px;
-    top:6px;
-    width:11px;height:11px;
-    border-radius:50%;
-    background:var(--ink);
-    border:2px solid var(--blueprint);
-  }
-  .timeline-item.current .timeline-dot{
-    background:var(--good);
-    border-color:var(--good);
-    box-shadow:0 0 0 4px rgba(57,192,140,0.15);
-  }
-  .timeline-date{
-    font-family:var(--mono);
-    font-size:12px;
-    color:var(--blueprint);
-    letter-spacing:0.5px;
-    margin-bottom:6px;
-  }
-  .timeline-role{
-    font-family:var(--display);
-    font-size:22px;
-    font-weight:600;
-    margin-bottom:2px;
-  }
-  .timeline-org{
-    font-family:var(--mono);
-    font-size:13px;
-    color:var(--slate);
-    margin-bottom:16px;
-  }
-  .timeline-list{
-    list-style:none;
-    display:flex;
-    flex-direction:column;
-    gap:8px;
-    max-width:620px;
-  }
-  .timeline-list li{
-    font-size:15px;
-    color:#CBD9E1;
-    position:relative;
-    padding-left:18px;
-  }
-  .timeline-list li::before{
-    content:'—';
-    position:absolute;left:0;top:0;
-    color:var(--slate);
-  }
-
-  /* PROJECTS */
-  .projects-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-    gap:28px;
-  }
-  .project-card{
-    border-radius:10px;
-    overflow:hidden;
-    border:1px solid rgba(47,168,196,0.2);
-    background:var(--ink-2);
-    transition:transform 0.25s ease, border-color 0.25s ease;
-    display:block;
-  }
-  .project-card:hover, .project-card:focus-visible{
-    transform:translateY(-6px);
-    border-color:var(--blueprint);
-  }
-  .browser-chrome{
-    background:#0D2536;
-    padding:10px 14px;
-    display:flex;
-    align-items:center;
-    gap:8px;
-    border-bottom:1px solid rgba(47,168,196,0.15);
-  }
-  .chrome-dot{width:8px;height:8px;border-radius:50%;}
-  .chrome-dot:nth-child(1){background:#E5654A;}
-  .chrome-dot:nth-child(2){background:#F2A73B;}
-  .chrome-dot:nth-child(3){background:#39C08C;}
-  .chrome-url{
-    font-family:var(--mono);
-    font-size:11px;
-    color:var(--slate);
-    margin-left:8px;
-    overflow:hidden;
-    text-overflow:ellipsis;
-    white-space:nowrap;
-  }
-  .project-body{padding:26px 24px 28px;}
-  .project-sector{
-    font-family:var(--mono);
-    font-size:11px;
-    color:var(--amber);
-    letter-spacing:1px;
-    text-transform:uppercase;
-    margin-bottom:10px;
-  }
-  .project-name{
-    font-family:var(--display);
-    font-size:21px;
-    font-weight:600;
-    margin-bottom:10px;
-  }
-  .project-desc{
-    font-size:14.5px;
-    color:var(--slate);
-    margin-bottom:18px;
-  }
-  .project-visit{
-    font-family:var(--mono);
-    font-size:12.5px;
-    color:var(--blueprint);
-    display:inline-flex;
-    align-items:center;
-    gap:6px;
-  }
-  .project-card:hover .project-visit{color:var(--amber);}
-
-  /* CERTS */
-  .certs{
-    display:flex;
-    flex-wrap:wrap;
-    gap:14px;
-  }
-  .cert-badge{
-    font-family:var(--mono);
-    font-size:13px;
-    color:var(--paper);
-    border:1px solid rgba(47,168,196,0.3);
-    padding:12px 18px;
-    border-radius:8px;
-    display:flex;
-    align-items:center;
-    gap:10px;
-    background:rgba(47,168,196,0.04);
-  }
-  .cert-badge::before{
-    content:'✓';
-    color:var(--good);
-    font-weight:700;
-  }
-
-  /* EDUCATION */
-  .edu-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-    gap:24px;
-  }
-  .edu-card{
-    padding:24px;
-    border:1px solid rgba(47,168,196,0.15);
-    border-radius:10px;
-  }
-  .edu-degree{
-    font-family:var(--display);
-    font-size:18px;
-    font-weight:600;
-    margin-bottom:6px;
-  }
-  .edu-school{
-    font-family:var(--mono);
-    font-size:12.5px;
-    color:var(--slate);
-  }
-
-  /* FOOTER / CONTACT */
-  footer{
-    padding:100px 0 60px;
-    text-align:center;
-    border-top:1px solid rgba(47,168,196,0.12);
-  }
-  .footer-tag{
-    font-family:var(--mono);
-    font-size:12px;
-    color:var(--blueprint);
-    letter-spacing:2px;
-    text-transform:uppercase;
-    margin-bottom:20px;
-  }
-  footer h2{
-    max-width:640px;
-    margin:0 auto 36px;
-  }
-  .contact-row{
-    display:flex;
-    justify-content:center;
-    gap:28px;
-    flex-wrap:wrap;
-    font-family:var(--mono);
-    font-size:14px;
-    color:var(--slate);
-    margin-bottom:50px;
-  }
-  .contact-row a:hover{color:var(--paper);}
-  .footer-bottom{
-    font-family:var(--mono);
-    font-size:12px;
-    color:var(--slate);
-    opacity:0.6;
-  }
-
-  @media(prefers-reduced-motion: reduce){
-    *{animation:none !important; transition:none !important;}
-  }
+/* responsive */
+@media (max-width:980px){
+  .nav ul{display:none}
+  .nav.open ul{display:flex;position:absolute;top:84px;left:20px;right:20px;flex-direction:column;background:#1a1d23;border:1px solid var(--line2);border-radius:14px;padding:20px;gap:18px}
+  .menu-btn{display:block}
+  .nav .pill{display:none}
+  .portrait{width:70vw;right:-8%;opacity:.55}
+  .arc,.spark{display:none}
+  .hero{padding-top:130px}
+  .stats{grid-template-columns:1fr 1fr;row-gap:24px}
+  .stat:nth-child(2){border-right:0}
+  .cards{grid-template-columns:1fr}
+  .two{grid-template-columns:1fr}
+  .cap{padding:0 0 32px;border-right:0;border-bottom:1px solid var(--line)}
+  .tools{padding:32px 0 0}
+  .exp{grid-template-columns:1fr}
+  .process{grid-template-columns:1fr 1fr}
+  .step::after{display:none!important}
+  .proj{grid-template-columns:1fr 1fr}
+  .cta{grid-template-columns:1fr}
+  .cta .contact{border-left:0;border-top:1px solid var(--line)}
+  .avail{display:none}
+}
+@media (max-width:560px){
+  .wrap{padding:0 18px}
+  .cap-grid{grid-template-columns:1fr}
+  .process,.proj{grid-template-columns:1fr}
+  .hero .btns{gap:18px}
+}
 </style>
 </head>
 <body>
-<div class="grid-bg"></div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 2c.6 5.4 4.6 9.4 10 10-5.4.6-9.4 4.6-10 10-.6-5.4-4.6-9.4-10-10 5.4-.6 9.4-4.6 10-10z"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M7 17L17 7M8 7h9v9"/></symbol>
+    <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 5v12M7 13l5 5 5-5M5 21h14"/></symbol>
+  </defs>
+</svg>
 
 <header>
-  <nav>
-    <div class="logo">AS<span>.</span>DEV</div>
-    <div class="nav-links nav-mobile-hide">
-      <a href="#skills">Skills</a>
-      <a href="#experience">Experience</a>
-      <a href="#projects">Projects</a>
-      <a href="#credentials">Credentials</a>
-    </div>
-    <div class="status-pill"><span class="status-dot"></span>Open to work</div>
-  </nav>
+  <div class="wrap">
+    <nav class="nav" id="nav">
+      <a href="#top" class="logo">AS<span>.dev</span></a>
+      <ul>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#capabilities">Capabilities</a></li>
+        <li><a href="#experience">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <a href="mailto:mirzaali940@gmail.com" class="pill">Let's Talk <svg class="ico" style="width:14px;height:14px"><use href="#i-arrow"/></svg></a>
+      <button class="menu-btn" aria-label="Menu" onclick="document.getElementById('nav').classList.toggle('open')">
+        <svg class="ico" viewBox="0 0 24 24"><path d="M4 8h16M4 16h16"/></svg>
+      </button>
+    </nav>
+  </div>
 </header>
 
-<main class="container">
+<main id="top">
+<!-- HERO -->
+<div class="hero">
+  <div class="arc"></div>
+  <svg class="ico spark" viewBox="0 0 24 24" style="width:26px;height:26px;fill:currentColor;stroke:none"><use href="#i-spark"/></svg>
 
-  <section class="hero" style="border-top:none;padding-top:80px;">
-    <div class="eyebrow">WordPress Full-Stack Developer · Lahore, Pakistan</div>
-    <h1>Ali Shahbaz builds WordPress sites that <span class="accent">load fast</span> and rank well.</h1>
-    <p class="hero-sub">Custom themes, Elementor builds, and WooCommerce stores — optimized for Core Web Vitals and on-page SEO from the first commit, not bolted on afterward.</p>
-    <div class="hero-cta">
-      <a href="#projects" class="btn btn-primary">View live projects ↓</a>
-      <a href="mailto:mirzaali940@gmail.com" class="btn btn-ghost">Get in touch</a>
-    </div>
-
-    <div class="dashboard">
-      <div class="dashboard-head">
-        <span class="dashboard-title">Core Web Vitals — typical outcome after optimization</span>
-        <span class="dashboard-chip">field data, per-project</span>
-      </div>
-      <div class="gauges">
-        <div class="gauge-card">
-          <div class="gauge-label">LCP</div>
-          <div class="gauge-full">Largest Contentful Paint</div>
-          <svg class="gauge-svg" viewBox="0 0 120 120">
-            <circle class="gauge-track" cx="60" cy="60" r="52"/>
-            <circle class="gauge-fill" id="gauge-lcp" cx="60" cy="60" r="52" stroke="#39C08C"/>
-            <text x="60" y="66" text-anchor="middle" class="gauge-value">1.2s</text>
-          </svg>
-          <div class="gauge-status">GOOD · under 2.5s</div>
-        </div>
-        <div class="gauge-card">
-          <div class="gauge-label">CLS</div>
-          <div class="gauge-full">Cumulative Layout Shift</div>
-          <svg class="gauge-svg" viewBox="0 0 120 120">
-            <circle class="gauge-track" cx="60" cy="60" r="52"/>
-            <circle class="gauge-fill" id="gauge-cls" cx="60" cy="60" r="52" stroke="#39C08C"/>
-            <text x="60" y="66" text-anchor="middle" class="gauge-value">0.02</text>
-          </svg>
-          <div class="gauge-status">GOOD · under 0.1</div>
-        </div>
-        <div class="gauge-card">
-          <div class="gauge-label">INP</div>
-          <div class="gauge-full">Interaction to Next Paint</div>
-          <svg class="gauge-svg" viewBox="0 0 120 120">
-            <circle class="gauge-track" cx="60" cy="60" r="52"/>
-            <circle class="gauge-fill" id="gauge-inp" cx="60" cy="60" r="52" stroke="#39C08C"/>
-            <text x="60" y="66" text-anchor="middle" class="gauge-value">140ms</text>
-          </svg>
-          <div class="gauge-status">GOOD · under 200ms</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="skills">
-    <div class="section-head">
-      <div>
-        <div class="section-tag">Toolbox</div>
-        <h2>What I build with</h2>
-      </div>
-      <p class="section-note">Full-stack across CMS, frontend, backend, and the performance/SEO layer that ties them together.</p>
-    </div>
-    <div class="toolbox">
-      <div class="tool-cell">
-        <div class="tool-cell-label">CMS &amp; Page Builders</div>
-        <div class="tool-tags">
-          <span class="tool-tag">WordPress</span>
-          <span class="tool-tag">Elementor</span>
-          <span class="tool-tag">WPBakery</span>
-        </div>
-      </div>
-      <div class="tool-cell">
-        <div class="tool-cell-label">Frontend</div>
-        <div class="tool-tags">
-          <span class="tool-tag">HTML</span>
-          <span class="tool-tag">CSS</span>
-          <span class="tool-tag">JavaScript</span>
-        </div>
-      </div>
-      <div class="tool-cell">
-        <div class="tool-cell-label">Backend</div>
-        <div class="tool-tags">
-          <span class="tool-tag">PHP</span>
-          <span class="tool-tag">MySQL</span>
-        </div>
-      </div>
-      <div class="tool-cell">
-        <div class="tool-cell-label">Performance</div>
-        <div class="tool-tags">
-          <span class="tool-tag">Core Web Vitals</span>
-          <span class="tool-tag">PageSpeed Insights</span>
-          <span class="tool-tag">Caching</span>
-          <span class="tool-tag">Image Optimization</span>
-        </div>
-      </div>
-      <div class="tool-cell">
-        <div class="tool-cell-label">SEO</div>
-        <div class="tool-tags">
-          <span class="tool-tag">On-Page SEO</span>
-          <span class="tool-tag">Technical SEO</span>
-          <span class="tool-tag">Schema Basics</span>
-        </div>
-      </div>
-      <div class="tool-cell">
-        <div class="tool-cell-label">E-commerce</div>
-        <div class="tool-tags">
-          <span class="tool-tag">WooCommerce Setup</span>
-          <span class="tool-tag">Customization</span>
-        </div>
-      </div>
-      <div class="tool-cell">
-        <div class="tool-cell-label">Security</div>
-        <div class="tool-tags">
-          <span class="tool-tag">WordPress Hardening</span>
-          <span class="tool-tag">Malware Prevention</span>
-        </div>
-      </div>
-      <div class="tool-cell">
-        <div class="tool-cell-label">Tools</div>
-        <div class="tool-tags">
-          <span class="tool-tag">Git</span>
-          <span class="tool-tag">cPanel</span>
-          <span class="tool-tag">WP-CLI</span>
-          <span class="tool-tag">Search Console</span>
-          <span class="tool-tag">Analytics</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="experience">
-    <div class="section-head">
-      <div>
-        <div class="section-tag">Experience</div>
-        <h2>Where I've worked</h2>
-      </div>
-      <p class="section-note">From intern to full-stack owner of client sites, end to end.</p>
-    </div>
-    <div class="timeline">
-      <div class="timeline-item current">
-        <div class="timeline-dot"></div>
-        <div class="timeline-date">Dec 2023 — 2025</div>
-        <div class="timeline-role">WordPress Full-Stack Developer</div>
-        <div class="timeline-org">Structure Health &amp; Fitness · Blue Pine Company</div>
-        <ul class="timeline-list">
-          <li>Developed and maintained custom WordPress websites using Elementor and custom PHP templates</li>
-          <li>Improved Core Web Vitals (LCP, CLS, INP) through advanced performance optimization</li>
-          <li>Implemented SEO best practices, improving search visibility and site performance</li>
-          <li>Customized themes, plugins, and WooCommerce functionality to business requirements</li>
-          <li>Owned website security, backups, and ongoing performance monitoring</li>
-        </ul>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-date">Mar 2023 — Apr 2023</div>
-        <div class="timeline-role">Web Developer Intern</div>
-        <div class="timeline-org">Codility Solutions</div>
-        <ul class="timeline-list">
-          <li>Assisted in frontend and backend development using HTML, CSS, JavaScript, and WordPress</li>
-          <li>Supported senior developers building and maintaining client websites</li>
-          <li>Gained hands-on experience with debugging, testing, and deployment workflows</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <section id="projects">
-    <div class="section-head">
-      <div>
-        <div class="section-tag">Portfolio</div>
-        <h2>Live projects</h2>
-      </div>
-      <p class="section-note">WordPress builds shipped for international clients across tourism, real estate, and home services.</p>
-    </div>
-    <div class="projects-grid">
-      <a class="project-card" href="https://diamondchauffeurtourism.com/" target="_blank" rel="noopener">
-        <div class="browser-chrome">
-          <span class="chrome-dot"></span><span class="chrome-dot"></span><span class="chrome-dot"></span>
-          <span class="chrome-url">diamondchauffeurtourism.com</span>
-        </div>
-        <div class="project-body">
-          <div class="project-sector">Tourism</div>
-          <div class="project-name">Diamond Chauffeur Tourism</div>
-          <p class="project-desc">Custom WordPress build for a chauffeur &amp; tourism service, optimized for speed and on-page SEO.</p>
-          <span class="project-visit">Visit site →</span>
-        </div>
-      </a>
-      <a class="project-card" href="https://www.gaterepairpro.com/" target="_blank" rel="noopener">
-        <div class="browser-chrome">
-          <span class="chrome-dot"></span><span class="chrome-dot"></span><span class="chrome-dot"></span>
-          <span class="chrome-url">gaterepairpro.com</span>
-        </div>
-        <div class="project-body">
-          <div class="project-sector">Home Services</div>
-          <div class="project-name">Gate Repair Pro</div>
-          <p class="project-desc">Service-business site built for local search visibility, mobile responsiveness, and lead conversion.</p>
-          <span class="project-visit">Visit site →</span>
-        </div>
-      </a>
-      <a class="project-card" href="https://mbresidencia.com/" target="_blank" rel="noopener">
-        <div class="browser-chrome">
-          <span class="chrome-dot"></span><span class="chrome-dot"></span><span class="chrome-dot"></span>
-          <span class="chrome-url">mbresidencia.com</span>
-        </div>
-        <div class="project-body">
-          <div class="project-sector">Real Estate</div>
-          <div class="project-name">MB Residencia</div>
-          <p class="project-desc">Real estate site with custom theming and Core Web Vitals tuning for a fast, credible first impression.</p>
-          <span class="project-visit">Visit site →</span>
-        </div>
-      </a>
-    </div>
-  </section>
-
-  <section id="credentials">
-    <div class="section-head">
-      <div>
-        <div class="section-tag">Credentials</div>
-        <h2>Certifications</h2>
-      </div>
-    </div>
-    <div class="certs">
-      <span class="cert-badge">Advanced Google Analytics</span>
-      <span class="cert-badge">Google Analytics for Power Users</span>
-      <span class="cert-badge">Google Digital Sales Certification</span>
-      <span class="cert-badge">SEMrush SEO Fundamentals</span>
-      <span class="cert-badge">SEMrush Technical SEO</span>
-    </div>
-  </section>
-
-  <section id="education">
-    <div class="section-head">
-      <div>
-        <div class="section-tag">Background</div>
-        <h2>Education</h2>
-      </div>
-    </div>
-    <div class="edu-grid">
-      <div class="edu-card">
-        <div class="edu-degree">B.Sc. Computer Science</div>
-        <div class="edu-school">Virtual University · 2017 – 2019</div>
-      </div>
-      <div class="edu-card">
-        <div class="edu-degree">Diploma in Mechanical Technology</div>
-        <div class="edu-school">Poly Technical Institute · 2010 – 2014</div>
-      </div>
-    </div>
-  </section>
-
-</main>
-
-<footer class="container">
-  <div class="footer-tag">Let's build something fast</div>
-  <h2>Open to full-time, remote, or contract WordPress work.</h2>
-  <div class="contact-row">
-    <a href="mailto:mirzaali940@gmail.com">mirzaali940@gmail.com</a>
-    <a href="tel:+923017003354">+92-301-7003354</a>
-    <span>Lahore, Pakistan</span>
+  <!-- Portrait: drop your photo as photo.jpg next to this file. Until then the silhouette shows. -->
+  <div class="portrait">
+    <svg viewBox="0 0 400 500" aria-hidden="true">
+      <defs>
+        <linearGradient id="sg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4a4f57"/><stop offset="1" stop-color="#1c1f24"/></linearGradient>
+        <linearGradient id="fade" x1="0" y1="0" x2="0" y2="1"><stop offset=".65" stop-color="#fff"/><stop offset="1" stop-color="#000"/></linearGradient>
+        <mask id="m"><rect width="400" height="500" fill="url(#fade)"/></mask>
+      </defs>
+      <g mask="url(#m)" fill="url(#sg)">
+        <circle cx="200" cy="150" r="78"/>
+        <path d="M60 500c0-110 50-170 140-170s140 60 140 170z"/>
+      </g>
+    </svg>
+    <img class="photo" src="photo.jpg" alt="Ali Shahbaz" onerror="this.remove()">
   </div>
-  <div class="footer-bottom">Ali Shahbaz — WordPress Full-Stack Developer</div>
-</footer>
 
-<script>
-  // Animate the Core Web Vitals gauges once, on load
-  function setGauge(id, percent){
-    const circle = document.getElementById(id);
-    if(!circle) return;
-    const circumference = 326.7; // 2 * PI * 52
-    const offset = circumference - (percent/100) * circumference;
-    requestAnimationFrame(()=>{
-      circle.style.strokeDashoffset = offset;
-    });
-  }
-  window.addEventListener('load', ()=>{
-    setTimeout(()=>{
-      setGauge('gauge-lcp', 88);
-      setGauge('gauge-cls', 96);
-      setGauge('gauge-inp', 90);
-    }, 300);
-  });
-</script>
+  <div class="wrap">
+    <div class="label eyebrow">Fast, search-ready websites</div>
+    <h1>WordPress<br>Developer</h1>
+    <p class="lead">Web development, SEO, paid ads, custom POS software and mobile apps — built fast, optimized for Core Web Vitals and made to rank.</p>
+    <div class="btns">
+      <a href="#work" class="btn-metal">View My Work</a>
+      <a href="mailto:mirzaali940@gmail.com" class="link-sm">Get in touch <svg class="ico" style="width:14px;height:14px"><use href="#i-down"/></svg></a>
+    </div>
+  </div>
+  <div class="avail">
+    <span class="label">Available for</span>
+    <span class="big">Full-time · Remote</span>
+    <span class="label">Contract projects</span>
+  </div>
+</div>
 
+<div class="wrap">
+  <!-- STATS -->
+  <div class="stats">
+    <div class="stat">
+      <svg class="ico" viewBox="0 0 24 24"><use href="#i-spark"/></svg>
+      <div class="num">3+</div><div class="label">Years Experience</div>
+    </div>
+    <div class="stat">
+      <svg class="ico" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><circle cx="17" cy="9" r="2.4"/><path d="M3 19c0-3.3 2.7-5.5 6-5.5s6 2.2 6 5.5M16 14c2.8 0 5 1.8 5 4.5"/></svg>
+      <div class="num">11+</div><div class="label">Live Projects</div>
+    </div>
+    <div class="stat">
+      <svg class="ico" viewBox="0 0 24 24"><path d="M8 4h8v6a4 4 0 01-8 0V4zM8 6H5v1a3 3 0 003 3M16 6h3v1a3 3 0 01-3 3M12 14v4M8 20h8"/></svg>
+      <div class="num">5</div><div class="label">Certifications</div>
+    </div>
+    <div class="stat">
+      <svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+      <div class="num">1.2s</div><div class="label">Typical LCP</div>
+    </div>
+  </div>
+
+  <!-- FEATURED WORK -->
+  <section id="work">
+    <div class="sec-head">
+      <span class="label">Featured Work</span>
+      <a href="#projects" class="link-sm">Explore all projects <svg class="ico" style="width:14px;height:14px"><use href="#i-arrow"/></svg></a>
+    </div>
+    <div class="cards">
+      <a class="fcard" href="https://bluepinemh.com" target="_blank" rel="noopener">
+        <div class="m-dash">
+          <div class="side"><i></i><i></i><i></i><i></i><i></i></div>
+          <div class="main"><div class="big">Luxury Mountain Homes</div>
+            <div class="bars"><b style="height:30%"></b><b style="height:45%"></b><b style="height:38%"></b><b style="height:62%"></b><b style="height:50%"></b><b style="height:78%"></b><b style="height:92%"></b></div>
+          </div>
+        </div>
+        <h3 style="margin-top:170px">Blue Pine Mountain Homes</h3>
+        <div class="tags">Real Estate<br>Custom WordPress</div>
+        <span class="go"><svg class="ico" style="width:16px;height:16px"><use href="#i-arrow"/></svg></span>
+      </a>
+
+      <a class="fcard" href="https://rh.com.pk" target="_blank" rel="noopener" style="background:linear-gradient(160deg,#252a31,#16181c)">
+        <div class="m-shape"><div class="r1"></div><div class="r2"></div></div>
+        <h3>Elevate Guest Experience</h3>
+        <div class="tags">The Residency Hotel<br>Hospitality · Booking</div>
+        <span class="go"><svg class="ico" style="width:16px;height:16px"><use href="#i-arrow"/></svg></span>
+      </a>
+
+      <a class="fcard p3" href="https://diamondchauffeurtourism.com/" target="_blank" rel="noopener">
+        <div class="m-phone">
+          <div class="ph-t">Book your ride</div>
+          <div class="ring">98</div>
+          <div class="row"></div><div class="row"></div><div class="row" style="width:70%"></div>
+        </div>
+        <h3>Diamond Chauffeur</h3>
+        <div class="tags">Tourism<br>Speed · On-page SEO</div>
+        <span class="go"><svg class="ico" style="width:16px;height:16px"><use href="#i-arrow"/></svg></span>
+      </a>
+    </div>
+  </section>
+
+  <!-- CAPABILITIES + TOOLS -->
+  <section id="capabilities">
+    <div class="two">
+      <div class="cap">
+        <span class="label">Services I Offer</span>
+        <div class="cap-grid">
+          <div class="cap-item"><svg class="ico" viewBox="0 0 24 24"><path d="M4 5h16v11H4zM9 20h6M12 16v4"/></svg><div><h4>Web Development</h4><p>Fast, responsive websites and stores, from custom themes to full builds.</p></div></div>
+          <div class="cap-item"><svg class="ico" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6"/><path d="M20 20l-4.5-4.5"/></svg><div><h4>SEO</h4><p>On-page and technical SEO that lifts rankings and organic traffic.</p></div></div>
+          <div class="cap-item"><svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r=".8"/></svg><div><h4>Google Ads</h4><p>Search and display campaigns built around leads and measurable return.</p></div></div>
+          <div class="cap-item"><svg class="ico" viewBox="0 0 24 24"><path d="M4 14V9l12-5v16L4 15zM16 8c2.5 0 4 1.8 4 4s-1.500 4-4 4M7 15l1.500 5"/></svg><div><h4>Meta Ads</h4><p>Facebook and Instagram campaigns with targeting and creative that convert.</p></div></div>
+          <div class="cap-item"><svg class="ico" viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 11h2M12 11h2M16 11h0M8 15h2M12 15h2M16 15h0"/></svg><div><h4>Custom POS Software</h4><p>Point of sale systems tailored to how your business sells and tracks stock.</p></div></div>
+          <div class="cap-item"><svg class="ico" viewBox="0 0 24 24"><rect x="7" y="2.500" width="10" height="19" rx="2.500"/><path d="M11 18.500h2"/></svg><div><h4>Mobile App Development</h4><p>Cross-platform iOS and Android apps built with React Native.</p></div></div>
+        </div>
+      </div>
+
+      <div class="tools">
+        <span class="label">Tools &amp; Technologies</span>
+        <div class="box">
+          <h5 class="tg">SEO Tools</h5>
+          <div class="tool-grid">
+            <div class="tool"><b>GA</b>Google Analytics</div>
+            <div class="tool"><b>GSC</b>Search Console</div>
+            <div class="tool"><b>Sem</b>Semrush</div>
+            <div class="tool"><b>Ah</b>Ahrefs</div>
+            <div class="tool"><b>Ub</b>Ubersuggest</div>
+          </div>
+          <h5 class="tg" style="margin-top:18px">Dev Stack</h5>
+          <div class="tool-grid">
+            <div class="tool"><b>Gt</b>Git</div>
+            <div class="tool"><b>&gt;_</b>WP-CLI</div>
+            <div class="tool"><b>Re</b>React JS</div>
+            <div class="tool"><b>RN</b>React Native</div>
+            <div class="tool"><b>La</b>Laravel</div>
+          </div>
+        </div>
+        <div class="box certs" id="credentials">
+          <h5>Certifications &amp; Education</h5>
+          <div class="cert"><b><svg class="ico" viewBox="0 0 24 24"><use href="#i-spark"/></svg></b><div><span>Advanced Google Analytics</span><small>Google</small></div></div>
+          <div class="cert"><b><svg class="ico" viewBox="0 0 24 24"><use href="#i-spark"/></svg></b><div><span>Google Analytics for Power Users</span><small>Google</small></div></div>
+          <div class="cert"><b><svg class="ico" viewBox="0 0 24 24"><use href="#i-spark"/></svg></b><div><span>Google Digital Sales Certification</span><small>Google</small></div></div>
+          <div class="cert"><b><svg class="ico" viewBox="0 0 24 24"><use href="#i-spark"/></svg></b><div><span>SEMrush SEO Fundamentals &amp; Technical SEO</span><small>SEMrush</small></div></div>
+          <div class="cert"><b><svg class="ico" viewBox="0 0 24 24"><path d="M3 9l9-4 9 4-9 4zM7 11v5c2.5 2 7.5 2 10 0v-5"/></svg></b><div><span>B.Sc. Computer Science</span><small>Virtual University · 2017 – 2019</small></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <span class="label">Experience</span>
+    <div class="exp">
+      <div class="xcard">
+        <div class="date">Dec 2023 — 2025</div>
+        <h3>WordPress Full-Stack Developer</h3>
+        <div class="co">Structure Health &amp; Fitness · Blue Pine Company</div>
+        <ul>
+          <li>Built and maintained custom WordPress sites with Elementor and custom PHP templates</li>
+          <li>Improved Core Web Vitals (LCP, CLS, INP) through performance optimization</li>
+          <li>Applied SEO best practices to improve search visibility</li>
+          <li>Customized themes, plugins and WooCommerce functionality</li>
+          <li>Owned security, backups and ongoing performance monitoring</li>
+        </ul>
+      </div>
+      <div class="xcard">
+        <div class="date">Mar 2023 — Apr 2023</div>
+        <h3>Web Developer Intern</h3>
+        <div class="co">Codility Solutions</div>
+        <ul>
+          <li>Assisted with frontend and backend work in HTML, CSS, JavaScript and WordPress</li>
+          <li>Supported senior developers on client websites</li>
+          <li>Gained hands-on experience in debugging, testing and deployment</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section>
+    <span class="label">My Build Process</span>
+    <div class="process">
+      <div class="step"><div><span class="n">01</span><h6>Audit</h6></div><p>Understanding goals, audience and the current site's performance.</p><svg class="ico" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6"/><path d="M20 20l-4.5-4.5"/></svg></div>
+      <div class="step"><div><span class="n">02</span><h6>Plan</h6></div><p>Mapping structure, SEO targets and the right theme approach.</p><svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r=".8"/></svg></div>
+      <div class="step"><div><span class="n">03</span><h6>Build</h6></div><p>Custom themes and Elementor layouts, clean and lightweight.</p><svg class="ico" viewBox="0 0 24 24"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5"/></svg></div>
+      <div class="step"><div><span class="n">04</span><h6>Optimize</h6></div><p>Tuning LCP, CLS and INP, caching and on-page SEO.</p><svg class="ico" viewBox="0 0 24 24"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg></div>
+      <div class="step"><div><span class="n">05</span><h6>Launch</h6></div><p>Testing, deployment, security checks and ongoing monitoring.</p><svg class="ico" viewBox="0 0 24 24"><path d="M5 19c0-4 2-8 8-13 3-1 5-1 6-1 0 1 0 3-1 6-5 6-9 8-13 8zM9 15l-4 4M14 9h.01"/></svg></div>
+    </div>
+  </section>
+
+  <!-- ALL PROJECTS -->
+  <section id="projects">
+    <div class="sec-head"><span class="label">All Live Projects</span></div>
+    <div class="proj">
+      <a class="pj" href="https://diamondchauffeurtourism.com/" target="_blank" rel="noopener"><small>Tourism</small><h4>Diamond Chauffeur Tourism</h4><p>Custom WordPress build for a chauffeur and tourism service, tuned for speed and on-page SEO.</p><em>Visit site →</em></a>
+      <a class="pj" href="https://www.gaterepairpro.com/" target="_blank" rel="noopener"><small>Home Services</small><h4>Gate Repair Pro</h4><p>Service-business site built for local search visibility, mobile responsiveness and lead conversion.</p><em>Visit site →</em></a>
+      <a class="pj" href="https://mbresidencia.com/" target="_blank" rel="noopener"><small>Real Estate</small><h4>MB Residencia</h4><p>Custom theming and Core Web Vitals tuning for a fast, credible first impression.</p><em>Visit site →</em></a>
+      <a class="pj" href="https://structure.com.pk" target="_blank" rel="noopener"><small>Health &amp; Fitness</small><h4>Structure</h4><p>Fitness and wellness site covering memberships, trainers, facilities and branches.</p><em>Visit site →</em></a>
+      <a class="pj" href="https://bluepinemh.com" target="_blank" rel="noopener"><small>Real Estate</small><h4>Blue Pine Mountain Homes</h4><p>Property platform for luxury mountain homes, developments, amenities and investment.</p><em>Visit site →</em></a>
+      <a class="pj" href="https://bluepinerantals.pk" target="_blank" rel="noopener"><small>Vacation Rentals</small><h4>Blue Pine Rentals</h4><p>Hospitality site for serviced mountain residences, amenities and booking information.</p><em>Visit site →</em></a>
+      <a class="pj" href="https://rh.com.pk" target="_blank" rel="noopener"><small>Hospitality</small><h4>The Residency Hotel</h4><p>Boutique hotel site highlighting rooms, amenities, guest experiences and direct booking.</p><em>Visit site →</em></a>
+      <a class="pj" href="https://uaebookacar.com" target="_blank" rel="noopener"><small>Chauffeur Services</small><h4>UAE Book A Car</h4><p>Luxury transport site promoting chauffeur-driven vehicles and booking across the UAE.</p><em>Visit site →</em></a>
+      <a class="pj" href="https://meemglobal.pk/" target="_blank" rel="noopener"><small>Travel &amp; Tourism</small><h4>Meem Global</h4><p>Travel agency site for Umrah and Ziyarat trips, tours, flight tickets, hotel bookings and visa assistance.</p><em>Visit site →</em></a>
+      <a class="pj" href="https://skybuilder.pk/" target="_blank" rel="noopener"><small>Real Estate</small><h4>Sky Builder</h4><p>Developer site showcasing apartments, shops and offices with floor plans, payment plans and property calculators.</p><em>Visit site →</em></a>
+      <a class="pj" href="https://dermaco.pk/" target="_blank" rel="noopener"><small>E-commerce</small><h4>Dermaco</h4><p>Online store for skincare, haircare and sun protection, with herbal and organic product ranges.</p><em>Visit site →</em></a>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta" id="contact">
+    <h2>Let's create<br>something<br>extraordinary</h2>
+    <div class="mid">
+      <p>I'm open to full-time, remote or contract WordPress work.</p>
+      <a href="mailto:mirzaali940@gmail.com" class="btn-metal">Let's Work Together <svg class="ico" style="width:14px;height:14px"><use href="#i-arrow"/></svg></a>
+    </div>
+    <div class="contact">
+      <a href="mailto:mirzaali940@gmail.com"><svg class="ico" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>mirzaali940@gmail.com</a>
+      <a href="tel:+923017003354"><svg class="ico" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z"/></svg>+92-301-7003354</a>
+      <div><svg class="ico" viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-11a7 7 0 10-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Lahore, Pakistan</div>
+      <div><svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg>alishahbazdev.netlify.app</div>
+    </div>
+  </div>
+
+  <footer>
+    <span>© 2026 Ali Shahbaz. All rights reserved.</span>
+    <span class="cn">Let's connect <a href="mailto:mirzaali940@gmail.com">Email</a> <a href="tel:+923017003354">Call</a></span>
+  </footer>
+</div>
+</main>
 </body>
 </html>
